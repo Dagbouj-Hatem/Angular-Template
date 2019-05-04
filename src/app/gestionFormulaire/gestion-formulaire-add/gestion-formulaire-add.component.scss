@@ -11,9 +11,10 @@ input[type=text] , select , input[type=date] ,input[type=number] {
   }
 
   // les champs ivalid 
-  .invalid-feedback{
+  .invalid-feedback {
       color : red;
   }
   ::placeholder { /* Firefox, Chrome, Opera */ 
     color: blue; 
 } 
+

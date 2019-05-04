@@ -54,301 +54,375 @@ import { SpecifierlesmontantsIndexComponent } from './spécifierlesmontants/spec
 import { SpecifierlesmontantsAddComponent } from './spécifierlesmontants/specifierlesmontants-add/specifierlesmontants-add.component';
 import { ConsulterAvisMedicalValideIndexComponent } from './ConsulterAvisMedicalValide/consulter-avis-medical-valide-index/consulter-avis-medical-valide-index.component';
 import { ConsulterAvisMedicalValideAddComponent } from './ConsulterAvisMedicalValide/consulter-avis-medical-valide-add/consulter-avis-medical-valide-add.component';
+import { LoginComponent } from './login/login.component';
+import { MainComponent } from './main/main.component';
+import { ErrorComponent } from './error/error.component';
+import { AuthGaurdService } from 'services/auth-gaurd.service';
 
 export const AppRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'login',
-        pathMatch: 'full',
+        redirectTo: 'login', 
+        pathMatch: 'full'
+    },
+    {   path: 'login',
+        component: LoginComponent
     },
     {
         path: 'dashboard',
-        component: DashboardComponent
-    },
-    {
-        path: 'user',
-        component: UserComponent
-    },
-    {
-        path: 'table',
-        component: TableComponent
-    },
-    {
-        path: 'typography',
-        component: TypographyComponent
-    },
-    {
-        path: 'icons',
-        component: IconsComponent
-    },
-    {
-        path: 'maps',
-        component: MapsComponent
-    },
-    {
-        path: 'notifications',
-        component: NotificationsComponent
-    },
-    {
-        path: 'upgrade',
-        component: UpgradeComponent
-    },
-    /**
-     * gestion des utilisateurs 
-     *  */ 
-
-    
-    { // liste des utilisateurs
-        path: 'users',
-        component: UserIndexComponent
-    },
-    { // add user
-        path: 'users/create',
-        component: UserAddComponent
-    },
-    { // edit user by id
-        path: 'users/edit/:id',
-        component: UserEditComponent
-    },
-    { // get single user by id
-        path: 'users/details/:id',
-        component: UserGetComponent
-    },
-
-    /**
-     * gestion des Assurés 
-     *  */ 
-
-    
-    { // liste des Assurés
-        path: 'Assurés',
-        component: GestionAssureIndexComponent
-    },
-    { // add Assurés
-        path: 'Assurés/create',
-        component: GestionAssureAddComponent
-    },
-    { // edit Assurés by id
-        path: 'Assurés/edit/:id',
-        component: GestionAssureEditComponent
-    },
-    { // get single Assurés by id
-        path: 'Assurés/details/:id',
-        component: GestionAssureDetailsComponent
-    },
-
-    /**
-     * gestion des formulaires
-     *  */ 
-
-    
-    { // liste des formulaires
-        path: 'Formulaires',
-        component: GestionFormulaireIndexComponent
-    },
-    { // add formulaires
-        path: 'Formulaires/create',
-        component: GestionFormulaireAddComponent
-    },
-    { // edit formulaires by id
-        path: 'Formulaires/edit/:id',
-        component: GestionFormulaireEditComponent
-    },
-    { // get single formulaires by id
-        path: 'Formulaires/details/:id',
-        component: GestionFormulaireDetailsComponent
-    },
-    /**
-     * etape administrative
-     *  */ 
-
-    
-    { // liste etape
-        path: 'administrative',
-        component: EtapeAdministrativeIndexComponent
-    },
-    { // add formulaires
-        path: 'administrative/create',
-        component: EtapeAdministrativeAddComponent
-    },
-  
-
-      /**
-     * control medical
-     *  */ 
-
-    
-    { // liste control
-        path: 'medical',
-        component: ControlMedicalIndexComponent
-    },
-    { // add formulaires
-        path: 'medical/create',
-        component: ControlMedicalAddComponent
-    },
-    { // get single formulaires by id
-        path: 'medical/details/:id',
-        component: ControlMedicalDetailsComponent
-    },
+        component: MainComponent,   
+        children: [  
+        {   path: '', 
+            component: DashboardComponent,
+            canActivate:[AuthGaurdService] 
+        },
+        {
+            path: 'user',
+            component: UserComponent,
+            canActivate:[AuthGaurdService]
+        },
+        {
+            path: 'table',
+            component: TableComponent,
+            canActivate:[AuthGaurdService]
+        },
+        {
+            path: 'typography',
+            component: TypographyComponent,
+            canActivate:[AuthGaurdService]
+        },
+        {
+            path: 'icons',
+            component: IconsComponent,
+            canActivate:[AuthGaurdService]
+        },
+        {
+            path: 'maps',
+            component: MapsComponent,
+            canActivate:[AuthGaurdService]
+        },
+        {
+            path: 'notifications',
+            component: NotificationsComponent,
+            canActivate:[AuthGaurdService]
+        },
+        {
+            path: 'upgrade',
+            component: UpgradeComponent,
+            canActivate:[AuthGaurdService]
+        },
         /**
-     * saisir dos
-     *  */ 
+         * gestion des utilisateurs 
+         *  */ 
 
-    
-    { // liste saisir dos
-        path: 'saisie',
-        component: SaisiesDossiersIndexComponent
-    },
-    { // add formulaires
-        path: 'saisie/create',
-        component: SaisiesDossiersAddComponent
-    },
-    { // edit formulaires by id
-        path: 'saisie/edit/:id',
-        component: SaisiesDossiersEditComponent},
-    { // get single formulaires by id
-        path: 'saisie/details/:id',
-        component:SaisiesDossiersDetailsComponent
-    },
+        
+        { // liste des utilisateurs
+            path: 'users',
+            component: UserIndexComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // add user
+            path: 'users/create',
+            component: UserAddComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // edit user by id
+            path: 'users/edit/:id',
+            component: UserEditComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // get single user by id
+            path: 'users/details/:id',
+            component: UserGetComponent,
+            canActivate:[AuthGaurdService]
+        },
 
-     /**
-     * validation
-     *  */ 
+        /**
+         * gestion des Assurés 
+         *  */ 
 
-    
-    { // liste validation
-        path: 'validation',
-        component: ValidationIndexComponent
-    },
-    { // add validation
-        path: 'validation/create',
-        component: ValidationAddComponent
-    },
-    { // edit validation by id
-        path: 'validation/edit/:id',
-        component: ValidationEditComponent},
-    { // get single validation by id
-        path: 'validation/details/:id',
-        component:ValidationDetailsComponent
-    },
-    /**
-     *parametrage
-     *  */ 
+        
+        { // liste des Assurés
+            path: 'Assurés',
+            component: GestionAssureIndexComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // add Assurés
+            path: 'Assurés/create',
+            component: GestionAssureAddComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // edit Assurés by id
+            path: 'Assurés/edit/:id',
+            component: GestionAssureEditComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // get single Assurés by id
+            path: 'Assurés/details/:id',
+            component: GestionAssureDetailsComponent,
+            canActivate:[AuthGaurdService]
+        },
 
-    
-    { // liste parametrage
-        path: 'parametrage',
-        component: ParametrageIndexComponent
-    },
-     /**
-     * gestion autorisation
-     *  */ 
+        /**
+         * gestion des formulaires
+         *  */ 
 
-    
-    { // liste  gestion autorisation
-        path: 'autorisation',
-        component: GestionautorisationIndexComponent
-    },
-    { // add  gestion autorisation
-        path: 'autorisation/create',
-        component: GestionautorisationAddComponent
-    },
-    { // edit  gestion autorisationby id
-        path: 'autorisation/edit/:id',
-        component: GestionautorisationEditComponent},
-    { // get single  gestion autorisationby id
-        path: 'autorisation/details/:id',
-        component:GestionautorisationDetailsComponent
-    },
-    /**
-     * parametrage formulaire
-     *  */ 
+        
+        { // liste des formulaires
+            path: 'Formulaires',
+            component: GestionFormulaireIndexComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // add formulaires
+            path: 'Formulaires/create',
+            component: GestionFormulaireAddComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // edit formulaires by id
+            path: 'Formulaires/edit/:id',
+            component: GestionFormulaireEditComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // get single formulaires by id
+            path: 'Formulaires/details/:id',
+            component: GestionFormulaireDetailsComponent,
+            canActivate:[AuthGaurdService]
+        },
+        /**
+         * etape administrative
+         *  */ 
 
+        
+        { // liste etape
+            path: 'administrative',
+            component: EtapeAdministrativeIndexComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // add formulaires
+            path: 'administrative/create',
+            component: EtapeAdministrativeAddComponent,
+            canActivate:[AuthGaurdService]
+        },
     
-    { // liste parametrage formulaire
-        path: 'Parametrage',
-        component: ParametrageFormulaireIndexComponent
-    },
-    { // add  parametrage formulaire
-        path: 'Parametrage/create',
-        component: ParametrageFormulaireAddComponent
-    },
-    { // edit parametrage formulaire by id
-        path: 'Parametrage/edit/:id',
-        component: ParametrageFormulaireEditComponent},
-    { // get single parametrage formulaire by id
-        path: 'Parametrage/details/:id',
-        component:ParametrageFormulaireDetailsComponent
-    },
-     /**
-     * parametrage convantion
-     *  */ 
 
-    
-    { // liste parametrage convantion
-        path: 'convantion',
-        component: ParametrageConventionIndexComponent
-    },
-    { // add  parametrage convantion
-        path: 'convantion/create',
-        component: ParametrageConventionAddComponent
-    },
-    { // edit parametrage convantion by id
-        path: 'convantion/edit/:id',
-        component: ParametrageConventionEditComponent},
-    { // get single parametrage convantion by id
-        path: 'convantion/details/:id',
-        component:ParametrageConventionDetailsComponent
-    },
-    
-     /**
-     * comptabilité
-     *  */ 
+        /**
+         * control medical
+         *  */ 
 
-    
-    { // liste parametrage convantion
-        path: 'comptabilité',
-        component: ComptabilitesIndexComponent
-    },
-    { // add  parametrage convantion
-        path: 'comptabilitécreate',
-        component: ComptabilitesAddComponent
-    },
-    { // edit parametrage convantion by id
-        path: 'comptabilité/edit/:id',
-        component: ComptabilitesEditComponent
-    },
-    { // get single parametrage convantion by id
-        path: 'comptabilité/details/:id',
-        component:ComptabilitesDetailleComponent
-    },
-    
-     /**
-     *spécifier les montants
-     *  */ 
+        
+        { // liste control
+            path: 'medical',
+            component: ControlMedicalIndexComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // add formulaires
+            path: 'medical/create',
+            component: ControlMedicalAddComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // get single formulaires by id
+            path: 'medical/details/:id',
+            component: ControlMedicalDetailsComponent,
+            canActivate:[AuthGaurdService]
+        },
+            /**
+         * saisir dos
+         *  */ 
 
-    
-    { // liste spécifier les montants
-        path: 'spécifier les montants',
-        component: SpecifierlesmontantsIndexComponent
-    },
-    { // add  parametrage convantion
-        path: 'spécifier les montants/create',
-        component:SpecifierlesmontantsAddComponent
-    },
-     /**
-     *consulter avis medical valide
-     *  */ 
+        
+        { // liste saisir dos
+            path: 'saisie',
+            component: SaisiesDossiersIndexComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // add formulaires
+            path: 'saisie/create',
+            component: SaisiesDossiersAddComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // edit formulaires by id
+            path: 'saisie/edit/:id',
+            component: SaisiesDossiersEditComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // get single formulaires by id
+            path: 'saisie/details/:id',
+            component:SaisiesDossiersDetailsComponent,
+            canActivate:[AuthGaurdService]
+        },
 
-    
-    { // listeconsulter avis medical valide
-        path: 'consulter avis medical valide',
-        component: ConsulterAvisMedicalValideIndexComponent
-    },
-    { // add  consulter avis medical valide
-        path: 'consulter avis medical valide/create',
-        component:ConsulterAvisMedicalValideAddComponent
-    },
-    
+        /**
+         * validation
+         *  */ 
+
+        
+        { // liste validation
+            path: 'validation',
+            component: ValidationIndexComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // add validation
+            path: 'validation/create',
+            component: ValidationAddComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // edit validation by id
+            path: 'validation/edit/:id',
+            component: ValidationEditComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // get single validation by id
+            path: 'validation/details/:id',
+            component:ValidationDetailsComponent,
+            canActivate:[AuthGaurdService]
+        },
+        /**
+         *parametrage
+        *  */ 
+
+        
+        { // liste parametrage
+            path: 'parametrage',
+            component: ParametrageIndexComponent,
+            canActivate:[AuthGaurdService]
+        },
+        /**
+         * gestion autorisation
+         *  */ 
+
+        
+        { // liste  gestion autorisation
+            path: 'autorisation',
+            component: GestionautorisationIndexComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // add  gestion autorisation
+            path: 'autorisation/create',
+            component: GestionautorisationAddComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // edit  gestion autorisationby id
+            path: 'autorisation/edit/:id',
+            component: GestionautorisationEditComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // get single  gestion autorisationby id
+            path: 'autorisation/details/:id',
+            component:GestionautorisationDetailsComponent,
+            canActivate:[AuthGaurdService]
+        },
+        /**
+         * parametrage formulaire
+         *  */ 
+
+        
+        { // liste parametrage formulaire
+            path: 'Parametrage',
+            component: ParametrageFormulaireIndexComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // add  parametrage formulaire
+            path: 'Parametrage/create',
+            component: ParametrageFormulaireAddComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // edit parametrage formulaire by id
+            path: 'Parametrage/edit/:id',
+            component: ParametrageFormulaireEditComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // get single parametrage formulaire by id
+            path: 'Parametrage/details/:id',
+            component:ParametrageFormulaireDetailsComponent,
+            canActivate:[AuthGaurdService]
+        },
+        /**
+         * parametrage convantion
+         *  */ 
+
+        
+        { // liste parametrage convantion
+            path: 'convantion',
+            component: ParametrageConventionIndexComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // add  parametrage convantion
+            path: 'convantion/create',
+            component: ParametrageConventionAddComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // edit parametrage convantion by id
+            path: 'convantion/edit/:id',
+            component: ParametrageConventionEditComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // get single parametrage convantion by id
+            path: 'convantion/details/:id',
+            component:ParametrageConventionDetailsComponent,
+            canActivate:[AuthGaurdService]
+        },
+        
+        /**
+         * comptabilité
+         *  */ 
+
+        
+        { // liste parametrage convantion
+            path: 'comptabilité',
+            component: ComptabilitesIndexComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // add  parametrage convantion
+            path: 'comptabilitécreate',
+            component: ComptabilitesAddComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // edit parametrage convantion by id
+            path: 'comptabilité/edit/:id',
+            component: ComptabilitesEditComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // get single parametrage convantion by id
+            path: 'comptabilité/details/:id',
+            component:ComptabilitesDetailleComponent,
+            canActivate:[AuthGaurdService]
+        },
+        
+        /**
+         *spécifier les montants
+        *  */ 
+
+        
+        { // liste spécifier les montants
+            path: 'spécifier les montants',
+            component: SpecifierlesmontantsIndexComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // add  parametrage convantion
+            path: 'spécifier les montants/create',
+            component:SpecifierlesmontantsAddComponent,
+            canActivate:[AuthGaurdService]
+        },
+        /**
+         *consulter avis medical valide
+        *  */ 
+
+        
+        { // listeconsulter avis medical valide
+            path: 'consulter avis medical valide',
+            component: ConsulterAvisMedicalValideIndexComponent,
+            canActivate:[AuthGaurdService]
+        },
+        { // add  consulter avis medical valide
+            path: 'consulter avis medical valide/create',
+            component:ConsulterAvisMedicalValideAddComponent,
+            canActivate:[AuthGaurdService]
+        },
+    ]} ,
+    // Error root
+    {
+        path:'**',
+        component: ErrorComponent
+    }
 ]
 

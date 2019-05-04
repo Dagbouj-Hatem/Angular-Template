@@ -63,6 +63,12 @@ import { SpecifierlesmontantsIndexComponent } from './spécifierlesmontants/spec
 import { SpecifierlesmontantsAddComponent } from './spécifierlesmontants/specifierlesmontants-add/specifierlesmontants-add.component';
 import { ConsulterAvisMedicalValideIndexComponent } from './ConsulterAvisMedicalValide/consulter-avis-medical-valide-index/consulter-avis-medical-valide-index.component';
 import { ConsulterAvisMedicalValideAddComponent } from './ConsulterAvisMedicalValide/consulter-avis-medical-valide-add/consulter-avis-medical-valide-add.component';
+import { LoginComponent } from './login/login.component';
+import { MainComponent } from './main/main.component';
+import { ErrorComponent } from './error/error.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -120,6 +126,9 @@ import { ConsulterAvisMedicalValideAddComponent } from './ConsulterAvisMedicalVa
     SpecifierlesmontantsAddComponent,
     ConsulterAvisMedicalValideIndexComponent,
     ConsulterAvisMedicalValideAddComponent,
+    LoginComponent,
+    MainComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,6 +138,14 @@ import { ConsulterAvisMedicalValideAddComponent } from './ConsulterAvisMedicalVa
     FooterModule,
     FixedPluginModule, 
     DataTablesModule,
+     // add form reactive 
+     FormsModule,
+     ReactiveFormsModule,
+     // end form reactive
+ 
+     // import  http client 
+     HttpClientModule,
+     // end import  http client 
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'})
 
   ],
