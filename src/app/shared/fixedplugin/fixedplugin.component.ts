@@ -20,7 +20,10 @@ export class FixedPluginComponent implements OnInit{
             }
 
         }
-
+        // added by developper
+        $sidebar.attr('data-background-color','black');
+        $sidebar.attr('data-active-color','info');
+        
         $('.fixed-plugin a').click(function(event){
           // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
             if($(this).hasClass('switch-trigger')){
@@ -38,7 +41,7 @@ export class FixedPluginComponent implements OnInit{
             $(this).addClass('active');
 
             var new_color = $(this).data('color');
-
+            console.log(new_color);
             if($sidebar.length != 0){
                 $sidebar.attr('data-background-color',new_color);
             }

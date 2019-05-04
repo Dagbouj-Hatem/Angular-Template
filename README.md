@@ -154,5 +154,15 @@ Instagram: <https://instagram.com/creativetimofficial>
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
 
 
-## to  update angular 
+## To  update angular to  version 7.3.8
 
+1. update the CLI to last version
+    $npm install @angular/cli@latest
+2. update all Angular packages 
+    $ng update --all --force
+3. update Type script
+    $npm i typescript@3.1.6 --save-dev --save-exact
+4. update the core-js lib
+    $npm install --save core-js@^2.5.0
+5. run the serve
+    $ng serve -o 
